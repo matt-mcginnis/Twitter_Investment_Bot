@@ -1,0 +1,4 @@
+python-dotenv==0.21.0
+python-twitter==3.5
+beautifulsoup4==4.11.1
+html5lib==1.1
