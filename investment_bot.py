@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
-import time
-import twitter
 import os
 import scraper
+import time
+import twitter
 
 # Load environment variables from .env file
 load_dotenv()
@@ -20,7 +20,7 @@ t = twitter.Api(consumer_key=_consumer_key,
                 access_token_secret=_access_token_secret
                 )
 
-# Set Timestamp for Oauth Client
+# Set timestamp for oauth client
 ts = str(time.time() - time.altzone)
 t._Api__auth.client.timestamp = ts
 
@@ -34,7 +34,7 @@ def main():
     investment_data_list = scraper.get_investment_data_single_qtr('Q2', '2022', raw_investment_data)
 
     # Post an investment tweet
-    t.PostUpdate(investment_data_list[2])
+    t.PostUpdate(investment_data_list[4])
 
 if __name__ == "__main__":
     main()

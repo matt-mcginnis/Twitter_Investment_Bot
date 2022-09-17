@@ -1,19 +1,33 @@
-import requests
 from bs4 import BeautifulSoup
 from typing import List
+import requests
 
-def get_raw_investment_data(url:str, head:dict):
+def get_raw_investment_data(url:str, head:dict) -> BeautifulSoup:
+    '''
+    Function to return structured table 
+    data from webpage given the URL
+    '''
     r = requests.get(url, headers=head)
     table_soup = BeautifulSoup(r.content, 'html5lib')
     table = table_soup.find('table', attrs = {'id':'grid'})
     return table
 
-def get_investment_data_multiple_qtrs(qrts: List[tuple], data:BeautifulSoup):
+def get_investment_data_multiple_qtrs(qrts: List[tuple], data:BeautifulSoup) -> List[str]:
+    '''
+    Wrapper function to return a list 
+    of investment data strings for 
+    multiple quarters and years
+    '''
     for q_data in qrts:
         get_investment_data_single_qtr(q_data[0], q_data[1], data)
 
-def get_investment_data_single_qtr(qtr:str, year:str, data:BeautifulSoup):
-    current_qtr = ''
+def get_investment_data_single_qtr(qtr:str, year:str, data:BeautifulSoup) -> List[str]:
+    '''
+    Function to return a list of 
+    investment data strings given 
+    a specific quarter and year
+    '''
+    current_qtr = None
     quarterly_data = []
 
     for row in data.findAll('tr'):
