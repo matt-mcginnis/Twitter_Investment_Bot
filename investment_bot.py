@@ -30,11 +30,11 @@ def main():
     url = 'https://www.dataroma.com/m/m_activity.php?m=BRK&typ=a'
     HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.81 Safari/537.36 Edg/97.0.1072.69'}
 
-    raw_invst_data = scraper.get_raw_investment_data(url, HEADERS)
-    invst_data_list = scraper.get_investment_data_single_qtr('Q2', '2022', raw_invst_data)
+    raw_investment_data = scraper.get_raw_investment_data(url, HEADERS)
+    investment_data_list = scraper.get_investment_data_single_qtr('Q2', '2022', raw_investment_data)
 
     # Post an investment tweet
-    t.PostUpdate(invst_data_list[0])
+    t.PostUpdate(investment_data_list[2])
 
 if __name__ == "__main__":
     main()
